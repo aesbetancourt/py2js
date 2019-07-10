@@ -1,0 +1,25 @@
+{
+  "name": "urban-goggles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron  src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aesbetancourt/urban-goggles.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aesbetancourt/urban-goggles/issues"
+  },
+  "homepage": "https://github.com/aesbetancourt/urban-goggles#readme",
+  "dependencies": {
+    "codemirror": "^5.48.0",
+    "electron": "^5.0.6",
+    "lexr": "^1.0.4"
+  }
+}
