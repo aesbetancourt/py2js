@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>code_translator</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Code Mirror Lib  -->
+    <script src="../../node_modules/codemirror/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="../../node_modules/codemirror/lib/codemirror.css">
+    <!-- Nord code style   -->
+    <link rel="stylesheet" href="../../node_modules/codemirror/theme/nord.css">
+    <!-- Python snippet  -->
+    <script src="../../node_modules/codemirror/mode/python/python.js"></script>
+    <!--  Kotlin snippet  -->
+    <script src="../../node_modules/codemirror/mode/clike/clike.js"></script>
+
+</head>
+
+<body>
+    <section id="main">
+        <div class="container" id="code">
+            <div class="row">
+                <div class="col">
+                    <h1 class="headers">Python Code</h1>
+                </div>
+                <div class="col">
+                    <h1 class="headers">Kotlin Code</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="python-code" class="editor"></div>
+                </div>
+                <div class="col">
+                    <div id="kotlin-code"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center" id="buttons">
+            <div class="row">
+                <div class="col d-flex flex-column"><button class="btn btn-primary buttons" type="button"><i class="fas fa-file-import"></i>&nbsp; Import .py</button><button class="btn btn-primary buttons" type="button"><i class="fas fa-play"></i>&nbsp; Execute</button></div>
+                <div class="col d-flex flex-column"><button class="btn btn-primary buttons" type="button"><i class="fas fa-exchange-alt"></i>&nbsp;Translate</button></div>
+                <div class="col d-flex flex-column"><button class="btn btn-primary buttons" type="button"><i class="fas fa-file-import"></i>&nbsp; Export .kt</button><button class="btn btn-primary buttons" type="button"><i class="fas fa-play"></i>&nbsp; Execute</button></div>
+            </div>
+        </div>
+        <div class="container" id="shell">
+            <div class="row">
+                <div class="col">
+                    <h1 class="headers">Shell</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"><textarea readonly></textarea></div>
+            </div>
+        </div>
+    </section>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        const myPythonCode = CodeMirror(document.getElementById("python-code"), {
+            mode:  "python",
+            lineNumbers: true,
+            theme: "nord"
+        });
+        const myKotlinCode = CodeMirror(document.getElementById("kotlin-code"), {
+            mode:  "clike",
+            lineNumbers: true,
+            theme: "nord"
+        });
+    </script>
+</body>
+
+</html>
