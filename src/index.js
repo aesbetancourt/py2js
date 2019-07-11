@@ -13,7 +13,10 @@ function createWindow () {
         minHeight: 700,
         minWidth: 600,
         maxHeight: 700,
-        maxWidth: 900
+        maxWidth: 900,
+        webPreferences: {
+            nodeIntegration: true
+        }
     });
     mainWindow.setMenu(null);
     // and load the index.html of the app.
