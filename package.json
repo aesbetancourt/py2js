@@ -20,6 +20,7 @@
   "dependencies": {
     "codemirror": "^5.48.0",
     "electron": "^5.0.6",
-    "lexr": "^1.0.4"
+    "lexr": "^1.0.4",
+    "python-shell": "^1.0.7"
   }
 }
