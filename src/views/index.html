@@ -37,14 +37,14 @@
                     <div id="python-code" class="editor"></div>
                 </div>
                 <div class="col">
-                    <div id="kotlin-code"></div>
+                    <div id="kotlin-code" class="editor" ></div>
                 </div>
             </div>
         </div>
         <div class="container text-center" id="buttons">
             <div class="row">
                 <div class="col d-flex flex-column"><button class="btn btn-primary buttons" type="button"><i class="fas fa-file-import"></i>&nbsp; Import .py</button><button class="btn btn-primary buttons" type="button"><i class="fas fa-play"></i>&nbsp; Execute</button></div>
-                <div class="col d-flex flex-column"><button class="btn btn-primary buttons" type="button"><i class="fas fa-exchange-alt"></i>&nbsp;Translate</button></div>
+                <div class="col d-flex flex-column"><button class="btn btn-primary buttons" type="button" onclick="callScanner()" ><i class="fas fa-exchange-alt"></i>&nbsp;Translate</button></div>
                 <div class="col d-flex flex-column"><button class="btn btn-primary buttons" type="button"><i class="fas fa-file-import"></i>&nbsp; Export .kt</button><button class="btn btn-primary buttons" type="button"><i class="fas fa-play"></i>&nbsp; Execute</button></div>
             </div>
         </div>
@@ -61,18 +61,7 @@
     </section>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script>
-        const myPythonCode = CodeMirror(document.getElementById("python-code"), {
-            mode:  "python",
-            lineNumbers: true,
-            theme: "nord"
-        });
-        const myKotlinCode = CodeMirror(document.getElementById("kotlin-code"), {
-            mode:  "clike",
-            lineNumbers: true,
-            theme: "nord"
-        });
-    </script>
+    <script src="./main.js"></script>
 </body>
 
 </html>
