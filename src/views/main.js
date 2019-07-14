@@ -23,7 +23,11 @@ function callScanner() {
     let tokens = scanner(pycode);
     console.log(tokens);
 }
-
+function callScanner2() {
+    let ktcode = myKotlinCode.getValue();
+    let tokens2 = scanner(ktcode);
+    console.log(tokens2);
+}
 
 /* Shells execution */
 
@@ -31,6 +35,12 @@ async function runPython() {
     let code = myPythonCode.getValue();
     pythonShell(code);
 }
-
+/* Set editor text */
+function setpyvalue(text){
+    var pycode = myPythonCode.setValue(text);
+}
+function setktvalue(text){
+    var ktcode = myKotlinCode.setValue(text);
+}
 
 

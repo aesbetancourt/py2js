@@ -26,31 +26,46 @@
         <div class="container" id="code">
             <div class="row">
                 <div class="col">
-                    <h1 class="headers">Python Code</h1>
+                    <h1 id="t1" class="headers">Python Code</h1>
                 </div>
                 <div class="col">
-                    <h1 class="headers">Kotlin Code</h1>
+                    <h1 id="t2" class="headers">Kotlin Code</h1>
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div id="e1" class="col2">
                     <div id="python-code" class="editor"></div>
                 </div>
-                <div class="col">
+                <a class="container2" onclick="c()">
+                    <i id="icon"class="fa fa-arrow-right"></i>
+                </a>
+                <div id="e2" class="col2">
                     <div id="kotlin-code" class="editor" ></div>
                 </div>
             </div>
         </div>
         <div class="container text-center" id="buttons">
             <div class="row">
-                <div class="col d-flex flex-column"><button class="btn btn-primary buttons" type="button"><i class="fas fa-file-import"></i>&nbsp; Import .py</button><button class="btn btn-primary buttons" type="button" onclick="runPython()"><i class="fas fa-play"></i>&nbsp; Execute</button></div>
-                <div class="col d-flex flex-column"><button class="btn btn-primary buttons" type="button" onclick="callScanner()" ><i class="fas fa-exchange-alt"></i>&nbsp;Translate</button></div>
-                <div class="col d-flex flex-column"><button class="btn btn-primary buttons" type="button"><i class="fas fa-file-import"></i>&nbsp; Export .kt</button><button class="btn btn-primary buttons" type="button" onclick="runKotlin()"><i class="fas fa-play"></i>&nbsp; Execute</button></div>
+                <div class="col d-flex flex-column">
+                        <label for="imp_py" class="subir">
+                                <i class="fas fa-file-import" ></i> Importar .py
+                        </label>
+                        <input id="imp_py" accept=".py" onchange='importpy()' type="file" style='display: none;'/> 
+                    <button class="btn btn-primary buttons" type="button"><i class="fas fa-file-export"></i>&nbsp; Export .py</button>
+                </div>
+                <div class="col d-flex flex-column"><button onclick="select_scanner();" class="btn btn-primary buttons" type="button"><i class="fas fa-exchange-alt"></i>&nbsp;Translate</button><button class="btn btn-primary buttons" type="button" onclick="runCode();"><i class="fas fa-play"></i>&nbsp; Execute</button></div>
+                <div class="col d-flex flex-column">
+                        <label for="imp_kt" class="subir">
+                                <i class="fas fa-file-import"></i> Importar .kt
+                        </label>
+                        <input id="imp_kt" accept=".kt" onchange='importkt()' type="file" style='display: none;'/>
+                    <button class="btn btn-primary buttons" type="button"><i class="fas fa-file-export"></i>&nbsp; Export .kt</button>
+                </div>
             </div>
         </div>
         <div class="container" id="shell">
             <div class="row">
-                <div class="col">
+                <div lass="col">
                     <h1 class="headers">Shell</h1>
                 </div>
             </div>
@@ -61,6 +76,55 @@
     </section>
     <script src="./assets/js/jquery.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+       var band=0;
+        function c(){
+            if(band==0){
+                document.getElementById('icon').style.transform = 'rotateZ(-180deg)';
+                band=1;
+            }else{
+                document.getElementById('icon').style.transform = 'rotateZ(0deg)';
+                band=0;
+            }
+        }
+
+        function importpy(){
+            var file=document.getElementById('imp_py').files[0];;
+            document.getElementById('imp_py').value="";
+            var reader = new FileReader();
+            reader.readAsText(file,'UTF-8');
+            reader.onload = readerEvent => {
+            var content = readerEvent.target.result;
+            setpyvalue(content);
+            }
+        }
+        function importkt(){
+            var file=document.getElementById('imp_kt').files[0];;
+            document.getElementById('imp_kt').value="";
+            var reader = new FileReader();
+            reader.readAsText(file,'UTF-8');
+            reader.onload = readerEvent => {
+            var content = readerEvent.target.result;
+            setktvalue(content);
+            }
+        }
+        function select_scanner(){
+            if(band==0){
+                callScanner();
+            }else{
+                callScanner2();
+            }
+        }
+        function runCode(){
+            if(band==1){
+                runPython()
+            }else{
+                runKotlin()
+            }
+        }
+    </script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="./main.js"></script>
 </body>
 
