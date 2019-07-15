@@ -36,7 +36,7 @@
                 <div id="e1" class="col2">
                     <div id="python-code" class="editor"></div>
                 </div>
-                <a class="container2" onclick="c()">
+                <a class="container2" onclick="arrow()">
                     <i id="icon"class="fa fa-arrow-right"></i>
                 </a>
                 <div id="e2" class="col2">
@@ -77,51 +77,7 @@
     <script src="./assets/js/jquery.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
     <script>
-       var band=0;
-        function c(){
-            if(band==0){
-                document.getElementById('icon').style.transform = 'rotateZ(-180deg)';
-                band=1;
-            }else{
-                document.getElementById('icon').style.transform = 'rotateZ(0deg)';
-                band=0;
-            }
-        }
 
-        function importpy(){
-            var file=document.getElementById('imp_py').files[0];;
-            document.getElementById('imp_py').value="";
-            var reader = new FileReader();
-            reader.readAsText(file,'UTF-8');
-            reader.onload = readerEvent => {
-            var content = readerEvent.target.result;
-            setpyvalue(content);
-            }
-        }
-        function importkt(){
-            var file=document.getElementById('imp_kt').files[0];;
-            document.getElementById('imp_kt').value="";
-            var reader = new FileReader();
-            reader.readAsText(file,'UTF-8');
-            reader.onload = readerEvent => {
-            var content = readerEvent.target.result;
-            setktvalue(content);
-            }
-        }
-        function select_scanner(){
-            if(band==0){
-                callScanner();
-            }else{
-                callScanner2();
-            }
-        }
-        function runCode(){
-            if(band==1){
-                runPython()
-            }else{
-                runKotlin()
-            }
-        }
     </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

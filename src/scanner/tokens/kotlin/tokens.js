@@ -124,7 +124,7 @@ const pytokens = {
     PRINT: /println/,
 // Logical
     AND: /&&/,
-    OR: /||/,
+    OR: /\|\|/,
     NOT: /!/,
     
 //  Operators and Special Symbols
@@ -167,8 +167,8 @@ const pytokens = {
     BSHIFTLEFT     : /<</,
     BSHIFTRIGHT    : />>/,
     BIT_AND_ASSIGN : /&=/,
-    BIT_OR_ASSIGN  : /|=/,
-    BIT_XOR_ASSIGN : /^=/,
+    BIT_OR_ASSIGN  : /\|=/,
+    BIT_XOR_ASSIGN : /\^=/,
     LAMBDA: /->/,
     // Literals
     NUM_LIT   : fullNumericLiteral,
