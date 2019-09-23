@@ -1,5 +1,5 @@
-const pyscanner = require("../scanner/python_analyzer");
-const ktscanner = require("../scanner/kotlin_analizer");
+const pyscan = require("../scanner/python_analyzer");
+const ktscan = require("../scanner/kotlin_analizer");
 const pythonShell = require('../shell/python');
 
 
@@ -21,12 +21,12 @@ const myKotlinCode = CodeMirror(document.getElementById("kotlin-code"), {
 
 function callPyScanner() {
     let pycode = myPythonCode.getValue();
-    let tokens = pyscanner(pycode);
+    let tokens = pyscan(pycode);
     console.log(tokens);
 }
 function callKtScanner() {
     let ktcode = myKotlinCode.getValue();
-    let tokens2 = ktscanner(ktcode);
+    let tokens2 = ktscan(ktcode);
     console.log(tokens2);
 }
 
