@@ -93,7 +93,7 @@ const pytokens = {
     XOR            : /^/,
     BIT_NOT        : /~/,
 
-    TERN_ELSE      : /:/,
+    START_BLOCK    : /:/,
     ASSIGN         : /=/,
     ADD_ASSIGN     : /\+=/,
     SUB_ASSIGN     : /-=/,
