@@ -5,11 +5,8 @@ function showOutput(output) {
 }
 
 module.exports = function run(code) {
-    let output;
      PythonShell.runString(code, null, function (err, results) {
         if (err) throw err;
-        output = results;
-        //console.log(output);
-        showOutput(output)
+        showOutput(results)
     });
 };
