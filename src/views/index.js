@@ -1,14 +1,16 @@
 const pyscan = require("../scanner/python_analyzer");
+const pyparser = require("../parser/python_parser");
 const ktscan = require("../scanner/kotlin_analizer");
 const pythonShell = require('../shell/python');
 
-
-/* CodeMirror windows */
+/* CodeMirror Window */
+// Python
 const myPythonCode = CodeMirror(document.getElementById("python-code"), {
     mode:  "python",
     lineNumbers: true,
     theme: "nord"
 });
+// Javascript
 const myKotlinCode = CodeMirror(document.getElementById("kotlin-code"), {
     mode:  "clike",
     lineNumbers: true,
@@ -16,13 +18,18 @@ const myKotlinCode = CodeMirror(document.getElementById("kotlin-code"), {
 });
 
 
-/* Lexical Analyzer */
-
-function callPyScanner() {
+/* Lexical/Syntax Analysis */
+async function callPyScanner() {
     let pycode = myPythonCode.getValue();
+    // Lexical
     let tokens = pyscan(pycode);
-    console.log(tokens);
+    // Syntactic
+    let ast = await pyparser(tokens, false, false);
+    // console.log(ast);
 }
+
+
+
 function callKtScanner() {
     let ktcode = myKotlinCode.getValue();
     let tokens2 = ktscan(ktcode);
@@ -30,7 +37,6 @@ function callKtScanner() {
 }
 
 /* Shells execution */
-
 async function runPython() {
     let code = myPythonCode.getValue();
     pythonShell(code);
