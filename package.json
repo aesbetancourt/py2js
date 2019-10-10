@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron  src/index.js"
+    "start": "electron  src/main.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "dependencies": {
     "codemirror": "^5.48.0",
     "electron": "^5.0.6",
+    "filbert": "^0.1.20",
     "lexr": "^1.0.4",
     "python-shell": "^1.0.7"
   }
