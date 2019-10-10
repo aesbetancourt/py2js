@@ -1,7 +1,9 @@
-const pyscan = require("../scanner/python_analyzer");
-const pyparser = require("../parser/python_parser");
-const ktscan = require("../scanner/kotlin_analizer");
+const Swal = require('sweetalert2');
+const pyScan = require("../scanner/python_analyzer");
+const pyParser = require("../parser/python_parser");
+// const ktscan = require("../scanner/kotlin_analizer");
 const pythonShell = require('../shell/python');
+const transpile = require('../transpiler/transpiler');
 
 /* CodeMirror Window */
 // Python
@@ -11,30 +13,43 @@ const myPythonCode = CodeMirror(document.getElementById("python-code"), {
     theme: "nord"
 });
 // Javascript
-const myKotlinCode = CodeMirror(document.getElementById("kotlin-code"), {
-    mode:  "clike",
+const myJsCode = CodeMirror(document.getElementById("kotlin-code"), {
+    mode:  "javascript",
     lineNumbers: true,
     theme: "nord"
 });
 
 
-/* Lexical/Syntax Analysis */
-async function callPyScanner() {
-    let pycode = myPythonCode.getValue();
+/*   Lexical/Syntax Analysis   */
+async function callTranspiler() {
+    let py_code = myPythonCode.getValue();
     // Lexical
-    let tokens = pyscan(pycode);
+    let tokens = pyScan(py_code);
     // Syntactic
-    let ast = await pyparser(tokens, false, false);
-    // console.log(ast);
+    let ast = await pyParser(tokens, false, false);
+    let syntax_errors = ast[0];
+    if (!syntax_errors){
+        let outCode = transpile(tokens);
+        setJsValue(outCode);
+        // console.log(ast[1])
+    } else {
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: ast[1]
+        })
+    }
+
+
 }
 
 
 
-function callKtScanner() {
-    let ktcode = myKotlinCode.getValue();
-    let tokens2 = ktscan(ktcode);
-    console.log(tokens2);
-}
+// function callKtScanner() {
+//     let ktcode = myJsCode.getValue();
+//     let tokens2 = ktscan(ktcode);
+//     console.log(tokens2);
+// }
 
 /* Shells execution */
 async function runPython() {
@@ -42,12 +57,13 @@ async function runPython() {
     pythonShell(code);
 }
 /* Set editor text */
-function setpyvalue(text){
-    var pycode = myPythonCode.setValue(text);
+function setJsValue(text){
+    myJsCode.setValue(text);
 }
-function setktvalue(text){
-    var ktcode = myKotlinCode.setValue(text);
-}
+
+// function setpyvalue(text){
+//     var pycode = myPythonCode.setValue(text);
+// }
 
 
 
@@ -66,24 +82,23 @@ function arrow(){
 function select_scanner(){
     // Change 1 to 0 when everything is ready
     if(band===1){
-        callPyScanner();
+        callTranspiler();
     }else{
         //console.log('kt scanner')
-        callKtScanner();
+        // callKtScanner();
     }
 }
 function runCode(){
     if(band===1){
         runPython()
     }else{
-        runKotlin()
+        // runKotlin()
     }
 }
 
 /* Import py or kt files */
-
 function importpy(){
-    var file=document.getElementById('imp_py').files[0];;
+    var file=document.getElementById('imp_py').files[0];
     document.getElementById('imp_py').value="";
     var reader = new FileReader();
     reader.readAsText(file,'UTF-8');
@@ -92,13 +107,14 @@ function importpy(){
         setpyvalue(content);
     }
 }
-function importkt(){
-    var file=document.getElementById('imp_kt').files[0];
-    document.getElementById('imp_kt').value="";
-    var reader = new FileReader();
-    reader.readAsText(file,'UTF-8');
-    reader.onload = readerEvent => {
-        var content = readerEvent.target.result;
-        setktvalue(content);
-    }
-}
+
+// function importkt(){
+//     var file=document.getElementById('imp_kt').files[0];
+//     document.getElementById('imp_kt').value="";
+//     var reader = new FileReader();
+//     reader.readAsText(file,'UTF-8');
+//     reader.onload = readerEvent => {
+//         var content = readerEvent.target.result;
+//         setJsValue(content);
+//     }
+// }
