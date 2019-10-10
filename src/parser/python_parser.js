@@ -9,8 +9,8 @@ module.exports = async function parser(tokens, ranges, locations) {
     }
     return await PythonShell.checkSyntax(code).then(() => {
         let ast = parseFn(code, {locations: locations, ranges: ranges});
-        return JSON.stringify(ast, null, 2);
+        return [false, JSON.stringify(ast, null, 2)];
     }).catch((err)=>{
-        return alert(err)
+        return [true, err]
     })
 };
