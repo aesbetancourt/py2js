@@ -10,20 +10,17 @@ function createWindow () {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 720,
-        minHeight: 700,
-        minWidth: 600,
-        maxHeight: 720,
-        maxWidth: 900,
         webPreferences: {
             nodeIntegration: true
         }
     });
+    mainWindow.setResizable(false);
     mainWindow.setMenu(null);
     // and load the index.html of the app.
     mainWindow.loadFile('views/index.html');
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
