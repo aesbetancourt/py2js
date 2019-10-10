@@ -108,13 +108,13 @@ function importpy(){
     }
 }
 
-// function importkt(){
-//     var file=document.getElementById('imp_kt').files[0];
-//     document.getElementById('imp_kt').value="";
-//     var reader = new FileReader();
-//     reader.readAsText(file,'UTF-8');
-//     reader.onload = readerEvent => {
-//         var content = readerEvent.target.result;
-//         setJsValue(content);
-//     }
-// }
+ function importkt(){
+     var file=document.getElementById('imp_kt').files[0];
+     document.getElementById('imp_kt').value="";
+     var reader = new FileReader();
+     reader.readAsText(file,'UTF-8');
+     reader.onload = readerEvent => {
+         var content = readerEvent.target.result;
+         setJsValue(content);
+     }
+ }
