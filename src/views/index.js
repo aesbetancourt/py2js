@@ -61,9 +61,9 @@ function setJsValue(text){
     myJsCode.setValue(text);
 }
 
-// function setpyvalue(text){
-//     var pycode = myPythonCode.setValue(text);
-// }
+ function setpyvalue(text){
+     var pycode = myPythonCode.setValue(text);
+ }
 
 
 
