@@ -4,7 +4,6 @@ const pythonShell = require('../shell/python');
 
 
 /* CodeMirror windows */
-
 const myPythonCode = CodeMirror(document.getElementById("python-code"), {
     mode:  "python",
     lineNumbers: true,
