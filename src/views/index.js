@@ -25,13 +25,14 @@ async function callTranspiler() {
     let py_code = myPythonCode.getValue();
     // Lexical
     let tokens = pyScan(py_code);
+    // console.log(tokens);
     // Syntactic
     let ast = await pyParser(tokens, false, false);
     let syntax_errors = ast[0];
     if (!syntax_errors){
         let outCode = transpile(tokens);
         setJsValue(outCode);
-        // console.log(ast[1])
+        // console.log(ast[1]);
     } else {
         Swal.fire({
             type: 'error',
@@ -39,8 +40,6 @@ async function callTranspiler() {
             text: ast[1]
         })
     }
-
-
 }
 
 
@@ -62,7 +61,7 @@ function setJsValue(text){
 }
 
  function setpyvalue(text){
-     var pycode = myPythonCode.setValue(text);
+     myPythonCode.setValue(text);
  }
 
 
