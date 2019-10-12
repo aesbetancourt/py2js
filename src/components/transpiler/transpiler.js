@@ -42,6 +42,7 @@ function getTabs(lines){
         tabs.push(aux);
         aux = 0
     }
+    tabs.push(0);
     return tabs
 }
 

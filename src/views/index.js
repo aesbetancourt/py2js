@@ -1,9 +1,8 @@
 const Swal = require('sweetalert2');
-const pyScan = require("../scanner/python_analyzer");
-const pyParser = require("../parser/python_parser");
-// const ktscan = require("../scanner/kotlin_analizer");
-const pythonShell = require('../shell/python');
-const transpile = require('../transpiler/transpiler');
+const pyScan = require("../components/scanner/python_analyzer");
+const pyParser = require("../components/parser/python_parser");
+const pythonShell = require('../components/shell/python');
+const transpile = require('../components/transpiler/transpiler');
 
 /* CodeMirror Window */
 // Python
