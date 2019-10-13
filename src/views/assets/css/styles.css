@@ -22,6 +22,7 @@ body{
 
 .headers {
   color: rgb(145,161,177);
+  margin-left: 55px;
   font-family: 'Source Code Pro', monospace;
   font-weight: bold;
 }
