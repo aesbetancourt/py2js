@@ -40,20 +40,28 @@ function getTabs(lines){
             }
         }
         tabs.push(aux);
-        aux = 0
+        // aux = 0
     }
+    tabs.push(aux);
     tabs.push(0);
     return tabs
 }
 
 // Insert new block closure lines
 function insertNewLines(lines, tabs){
+    let close_block = [];
+    let lvl = 0;
     for (let i = 0; i < tabs.length; i++) {
         if (tabs[i] > tabs[i+1]){
-            let lvl = Math.abs(tabs[i+1] - tabs[i]);
+            lvl = Math.abs(tabs[i+1] - tabs[i]);
             for (let j = 0; j < lvl; j++) {
-                lines.splice(i+1 , 0, "  ".repeat(j) + "}\n")
+                close_block.push("  ".repeat(j));
+                close_block.push("}");
+                close_block.push("\n");
+                lines.splice(i+1 , 0, close_block);
+                close_block = []
             }
+
         }
     }
     return lines
@@ -86,6 +94,9 @@ function literalChanges(lines) {
             if (lines[i][j] === ":") lines[i][j] = "{";
             if (lines[i][j] === "True") lines[i][j] = "true";
             if (lines[i][j] === "False") lines[i][j] = "false";
+            if (lines[i][j] === "except") lines[i][j] = "catch";
+            if (lines[i][j] === "==") lines[i][j] = "===";
+            if (lines[i][j] === "!=") lines[i][j] = "!==";
             if (lines[i][j].startsWith("#")){
                 let comment = lines[i][j].split("#");
                 lines[i][j] = "//" + comment[1]
