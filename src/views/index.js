@@ -1,4 +1,7 @@
 const Swal = require('sweetalert2');
+const fs = require("fs");
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec);
 const pyScan = require("../components/scanner/python_analyzer");
 const pyParser = require("../components/parser/python_parser");
 const pythonShell = require('../components/shell/python');
@@ -43,25 +46,26 @@ async function callTranspiler() {
 
 
 
-// function callKtScanner() {
-//     let ktcode = myJsCode.getValue();
-//     let tokens2 = ktscan(ktcode);
-//     console.log(tokens2);
-// }
-
 /* Shells execution */
 async function runPython() {
     let code = myPythonCode.getValue();
     pythonShell(code);
 }
+
+async function runJS() {
+    const code = await exec('node OutCode.js', {cwd: 'examples'});
+    return {code}
+}
+
+
 /* Set editor text */
 function setJsValue(text){
     myJsCode.setValue(text);
 }
 
- function setpyvalue(text){
-     myPythonCode.setValue(text);
- }
+function setpyvalue(text){
+ myPythonCode.setValue(text);
+}
 
 
 
@@ -79,40 +83,46 @@ function arrow(){
 
 function select_scanner(){
     // Change 1 to 0 when everything is ready
-    if(band===1){
+    if(band===0){
         callTranspiler();
-    }else{
-        //console.log('kt scanner')
-        // callKtScanner();
     }
 }
 function runCode(){
     if(band===1){
         runPython()
     }else{
-        // runKotlin()
+        runJS().then(function (e) {
+            document.getElementById("shell-area").value = e.code["stdout"];
+        });
     }
 }
 
 /* Import py or kt files */
 function importpy(){
-    var file=document.getElementById('imp_py').files[0];
-    document.getElementById('imp_py').value="";
-    var reader = new FileReader();
+    let file = document.getElementById('imp_py').files[0];
+    document.getElementById('imp_py').value = "";
+    let reader = new FileReader();
     reader.readAsText(file,'UTF-8');
     reader.onload = readerEvent => {
-        var content = readerEvent.target.result;
+        let content = readerEvent.target.result;
         setpyvalue(content);
     }
 }
 
- function importkt(){
-     var file=document.getElementById('imp_kt').files[0];
-     document.getElementById('imp_kt').value="";
-     var reader = new FileReader();
-     reader.readAsText(file,'UTF-8');
-     reader.onload = readerEvent => {
-         var content = readerEvent.target.result;
-         setJsValue(content);
-     }
- }
+function exportJs() {
+    let js_code = myJsCode.getValue();
+    fs.writeFile("examples/OutCode.js", js_code, (err) =>{
+        if (err) throw err;
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500
+        });
+
+        Toast.fire({
+            type: 'success',
+            title: 'File Exported!'
+        })
+    });
+}
