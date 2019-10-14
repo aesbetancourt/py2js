@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>code_translator</title>
+    <title>Transpiler</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700">
@@ -25,10 +25,10 @@
         <div class="container" id="code">
             <div class="row">
                 <div class="col">
-                    <h1 id="t1" class="headers">Python</h1>
+                    <h1 class="headers">Python</h1>
                 </div>
                 <div class="col">
-                    <h1 id="t2" class="headers">JavaScript</h1>
+                    <h1 class="headers" style="padding-left: 50px">JavaScript</h1>
                 </div>
             </div>
             <div class="row">
@@ -44,23 +44,33 @@
             </div>
         </div>
         <div class="container text-center" id="buttons">
+            <hr style="background-color: #3f4e5e">
             <div class="row">
                 <div class="col d-flex flex-column">
-                        <label for="imp_py" class="subir">
-                                <i class="fas fa-file-import" ></i> Importar .py
-                        </label>
-                        <input id="imp_py" accept=".py" onchange='importpy()' type="file" style='display: none;'/> 
-                    <button class="btn btn-primary buttons" type="button"><i class="fas fa-file-export"></i>&nbsp; Export .py</button>
+                    <label for="imp_py" class="subir">
+                            <i class="fas fa-file-import" ></i> Import .py
+                    </label>
+                    <input id="imp_py" accept=".py" onchange='importpy()' type="file" style='display: none;'/>
                 </div>
-                <div class="col d-flex flex-column"><button onclick="select_scanner();" class="btn btn-primary buttons" type="button"><i class="fas fa-exchange-alt"></i>&nbsp;Translate</button><button class="btn btn-primary buttons" type="button" onclick="runCode();"><i class="fas fa-play"></i>&nbsp; Execute</button></div>
                 <div class="col d-flex flex-column">
-                        <label for="imp_kt" class="subir">
-                                <i class="fas fa-file-import"></i> Importar .js
-                        </label>
-                        <input id="imp_kt" accept=".kt" onchange='importkt()' type="file" style='display: none;'/>
-                    <button class="btn btn-primary buttons" type="button"><i class="fas fa-file-export"></i>&nbsp; Export .js</button>
+                    <button onclick="select_scanner();" class="btn btn-primary buttons" type="button">
+                        <i class="fas fa-exchange-alt"></i>&nbsp;Translate
+                    </button>
+                </div>
+                <div class="col d-flex flex-column">
+                    <button class="btn btn-primary buttons" type="button" onclick="runCode();">
+                        <i class="fas fa-play"></i>&nbsp;
+                        Execute
+                    </button>
+                </div>
+                <div class="col d-flex flex-column">
+                    <button class="btn btn-primary buttons" type="button" onclick="exportJs()">
+                        <i class="fas fa-file-export"></i>
+                        &nbsp; Export .js
+                    </button>
                 </div>
             </div>
+            <hr style="background-color: #3f4e5e">
         </div>
         <div class="container" id="shell">
             <div class="row">
